@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Gestion des biens - i-immo</title>
+    <style>
+        /* Styles de réinitialisation */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        /* Styles de la navigation */
+        header {
+            background-color: #ff7f00; /* Orange */
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            color: white;
+            font-size: 24px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* Section principale avec image de fond */
+        .hero {
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6RxrfPg7KL-fmwsM9YZXXJZBAuXbZxylyYw&s '); /* Image de fond */
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: rgb(4, 14, 1);
+            padding: 0 20px;
+        }
+
+        /* Icônes et options de gestion */
+        .icons-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: -100px;
+        }
+
+        .icon-box {
+            background-color: rgb(56, 241, 9);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 250px;
+        }
+
+        .icon-box:hover {
+            background-color: #e68d09;
+        }
+
+        .icon {
+            font-size: 50px;
+            color: #66cc33; /* Vert pour les icônes */
+            margin-bottom: 15px;
+        }
+
+        .icon-text {
+            font-size: 20px;
+            color: #f6f8f6;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="indexaccueil-1.html" style="text-decoration: none;"><h1>i-immo</h1></a>
+        <nav>
+            <ul>
+                <li><a href="#">Gestion des biens</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Gérez vos biens immobiliers en toute simplicité</h1>
+        </section>
+
+        <div class="icons-container">
+            <div class="icon-box">
+                <div class="icon">🏠</div>
+                <div class="icon-text">Gérer ses biens immobiliers</div>
+            </div>
+            <div class="icon-box">
+                <div class="icon">➕</div>
+                <div class="icon-text">Ajouter de nouveaux biens</div>
+            </div>
+            <div class="icon-box">
+                <div class="icon">✏️</div>
+                <div class="icon-text">Modifier les informations existantes</div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>i-immo 2024</p>
+    </footer>
+</body>
+</html>
+
