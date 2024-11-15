@@ -1,14 +1,14 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link rel="stylesheet" href="../static/css/inscription.css">
+    <link rel="stylesheet" href="{% static "css/inscription.css" %}">
 </head>
 
 <body>
-
 
         <div class="conteneur-transparent">
                 
@@ -18,47 +18,62 @@
             <br>
             <br>
             <form method="post" action="">
+                {% csrf_token %}
                 <div class="container">
                     <div class="left">
                         <label for="name">Nom</label>   
                         <br>
                         <br>
-                        <input type="text" name="nom" id="nom">    
+                        {% comment %} <input type="text" name="nom" id="nom">     {% endcomment %}
+                        {{form.first_name}}
+                        <br>
+                        <br>
+                        <br>
+                        <label for="name">user name</label>   
+                        <br>
+                        <br>
+                        {% comment %} <input type="text" name="nom" id="nom">     {% endcomment %}
+                        {{form.username}}
                         <br>
                         <br>
                         <br>
                         <label for="prenom">Prenom</label>    
                         <br>
                         <br>
-                        <input type="text" name="prenom">    
+                        {% comment %} <input type="text" name="prenom">     {% endcomment %}
+                        {{form.last_name}}
                         <br>
                         <br>
                         <br>
-                        <label for="tel">Tel</label> 
+                        <label for="tel">Tel</label>
                         <br>
                         <br>
-                        <input type="text" name="tel">  
+                        {% comment %} <input type="text" name="tel">   {% endcomment %}
+                        {% comment %} {{form.numero}} {% endcomment %}
                     </div>
                     
                     <div class="right">
                         <label for="email">Email</label>
                         <br>
                         <br>
-                        <input type="email" name="email">
+                        {% comment %} <input type="email" name="email"> {% endcomment %}
+                        {{form.email}}
                         <br>
                         <br>
                         <br>  
                         <label for="mot de passe">Mot de passe</label>
                         <br>
                         <br>
-                        <input type="password" name="password">
+                        {% comment %} <input type="password" name="password"> {% endcomment %}
+                        {{form.password}}
                         <br>
                         <br>
                         <br>
                         <label for="Confirmer mot de passe">Commune</label>
                         <br>
                         <br>
-                        <input type="text" name="Confirmer mot de passe">
+                        {% comment %} <input type="text" name="Confirmer mot de passe"> {% endcomment %}
+                        {{form.Commune}}
                     </div>
                 </div>
                 
