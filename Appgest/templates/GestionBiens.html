@@ -125,10 +125,13 @@
                 <div class="icon">🏠</div>
                 <div class="icon-text">Gérer ses biens immobiliers</div>
             </div>
-            <div class="icon-box">
-                <div class="icon">➕</div>
-                <div class="icon-text">Ajouter de nouveaux biens</div>
-            </div>
+            <a href="{% url "declare_bien" %}" style='text-decoration:none;'>
+                <div class="icon-box">
+                    <div class="icon">➕</div>
+                    <div class="icon-text">Ajouter de nouveaux biens</div>
+                </div>
+            </a>
+            
             <div class="icon-box">
                 <div class="icon">✏️</div>
                 <div class="icon-text">Modifier les informations existantes</div>

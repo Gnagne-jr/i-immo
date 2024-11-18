@@ -57,6 +57,13 @@ padding: 8px; /* Ajoutez du padding pour un aspect plus esthétique */
 border: 2px solid #ccc; /* Ajoutez une bordure pour plus de visibilité */
 width: 250px;
 }
+.select{
+  background-color: rgb(214, 90, 7);
+  border-radius: 20px; 
+  padding: 8px; 
+  border: 2px solid #ccc;
+  width: 250px;
+}
 .de{
 background-color: rgb(113, 121, 118);
 }

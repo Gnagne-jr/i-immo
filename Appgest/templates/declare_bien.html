@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire Multi-Étapes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        input, select, label {
+            width: 100%;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        input, select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Déclaration de Bien Immobilier</h1>
+        <form id="multiStepForm" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <!-- Étape 1 -->
+            <div class="form-step active" id="step1">
+                <label for="type_bien">Type de bien :</label>
+                {{ form.type_bien }}
+
+                <label for="adresse">Adresse :</label>
+                {{ form.adresse }}
+
+                <label for="valeur">Valeur :</label>
+                {{ form.valeur }}
+
+                <label for="proprietaire">Propriétaire :</label>
+                {{ form.proprietaire }}
+
+                <label for="date_acquisition">Date d'acquisition :</label>
+                {{ form.date_acquisition }}
+
+                <div class="button-group">
+                    <button type="button" id="nextBtn1">Suivant</button>
+                </div>
+            </div>
+            
+            <!-- Étape 2 -->
+            <div class="form-step" id="step2">
+                <label for="date_chambre">Date de chambre :</label>
+                {{ form.date_chambre }}
+
+                <label for="nbr_hectare">Nombre d'hectares :</label>
+                {{ form.nbr_hectare }}
+
+                <label for="commune">Nombre d'hectares :</label>
+                {{ form.commune }}
+
+                <label for="photo1">Photo 1 :</label>
+                {{ form.photo1 }}
+
+                <label for="photo3">Photo 3 :</label>
+                {{ form.photo3 }}
+
+                <label for="photo4">Photo 4 :</label>
+                {{ form.photo4 }}
+
+                <div class="button-group">
+                    <button type="button" id="prevBtn2">Précédent</button>
+                    <button type="submit">Soumettre</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const step1 = document.getElementById("step1");
+            const step2 = document.getElementById("step2");
+            const nextBtn1 = document.getElementById("nextBtn1");
+            const prevBtn2 = document.getElementById("prevBtn2");
+
+            nextBtn1.addEventListener("click", () => {
+                step1.classList.remove("active");
+                step2.classList.add("active");
+            });
+
+            prevBtn2.addEventListener("click", () => {
+                step2.classList.remove("active");
+                step1.classList.add("active");
+            });
+        });
+    </script>
+</body>
+</html>
