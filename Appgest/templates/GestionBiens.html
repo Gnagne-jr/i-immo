@@ -107,7 +107,7 @@
 </head>
 <body>
     <header>
-        <a href="indexaccueil-1.html" style="text-decoration: none;"><h1>i-immo</h1></a>
+        <a href="{% url "index" %}" style="text-decoration: none;"><h1>i-immo</h1></a>
         <nav>
             <ul>
                 <li><a href="#">Gestion des biens</a></li>
@@ -121,10 +121,13 @@
         </section>
 
         <div class="icons-container">
-            <div class="icon-box">
-                <div class="icon">🏠</div>
-                <div class="icon-text">Gérer ses biens immobiliers</div>
-            </div>
+            <a href="{% url "contribuable_dashboard" %}" style="text-decoration:none;"> 
+                <div class="icon-box">
+                    <div class="icon">🏠</div>
+                    <div class="icon-text">Gérer ses biens immobiliers</div>
+                </div>
+            </a>
+            
             <a href="{% url "declare_bien" %}" style='text-decoration:none;'>
                 <div class="icon-box">
                     <div class="icon">➕</div>

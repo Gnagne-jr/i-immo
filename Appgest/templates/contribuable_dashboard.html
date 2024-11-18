@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord Contribuable</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Tableau de bord - Contribuable</h1>
+        <p class="text-center">Bienvenue {{ request.user.first_name }} {{ request.user.last_name }}</p>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card text-white bg-warning mb-3">
+                    <div class="card-header">Nombre de déclarations</div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ declarations|length }} déclarations</h5>
+                        <p class="card-text">Biens immobiliers déclarés à ce jour.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="mt-5">Liste de vos déclarations</h3>
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>Type de bien</th>
+                    <th>Adresse</th>
+                    <th>Valeur</th>
+                    <th>Date d'acquisition</th>
+                    <th>Commune</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for declaration in declarations %}
+                <tr>
+                    <td>{{ declaration.type_bien }}</td>
+                    <td>{{ declaration.adresse }}</td>
+                    <td>{{ declaration.valeur }}</td>
+                    <td>{{ declaration.date_acquisition }}</td>
+                    <td>{{ declaration.commune }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center">Aucune déclaration trouvée.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

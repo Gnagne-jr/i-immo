@@ -116,17 +116,32 @@
 </head>
 <body>
     <header>
-        <a href="indexaccueil-1.html" style="text-decoration: none;"><h1>i-immo</h1></a>
+        <a href="{% url "index" %}" style="text-decoration: none;"><h1>i-immo</h1></a>
         
         <nav>
             <ul>
-                <li><a href="#">Accueil</a></li>
-                <li><a href="{% url "register" %}">S'inscrire</a></li>
+                <li><a href="{% url "index" %}">Accueil</a></li>
+                
+                {% if user.is_contribuable %}
+                        {% if user.is_authenticated == False %}
+                    <li><a href="{% url "register" %}">S'inscrire</a></li>
+                    {% endif %}
+                    <li><a href="{% url "gest_bien" %}">Gerer ses biens immobiliers</a></li>
+                    <li><a href="Paiementimpôt.html">Payer ses impôts</a></li>
+                {% endif %}
+                
+                {% if user.is_agent %}
+                    <li><a href="{% url "dashboard" %}">Tableau de bord</a></li>
+                {% endif %}
+
+                {% if user.is_authenticated %}
+                <li><a href="{% url "deconexion" %}">Deconnexion</a></li>
+                {% else %}
                 <li><a href="{% url "login" %}">Se connecter</a></li>
-                <li><a href="{% url "dashboard" %}">Tableau de bord</a></li>
-                <li><a href="{% url "gest_bien" %}">Gerer ses biens immobiliers</a></li>
-                <li><a href="Paiementimpôt.html">Payer ses impôts</a></li>
-                <li><a href="Pagecontact.html">Contact</a></li>
+                {% endif %}
+                
+                
+                <li><a href="{% url "contact" %}">Contact</a></li>
             </ul>
         </nav>
     </header>

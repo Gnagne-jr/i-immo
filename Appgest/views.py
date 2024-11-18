@@ -15,6 +15,9 @@ def index(request):
 def gest_bien(request):
     return render(request, 'GestionBiens.html')
 
+def contact(request):
+    return render(request, 'contact.html')
+
 @login_required
 def dashboard(request):
    
@@ -29,6 +32,18 @@ def dashboard(request):
     }
 
     return render(request, 'dashboard.html', context)
+
+@login_required
+def contribuable_dashboard(request):
+    if request.user.is_contribuable:
+        declarations = BienImobilier.objects.filter(user=request.user)
+
+        context = {
+            'declarations': declarations,
+        }
+        return render(request, 'contribuable_dashboard.html', context)
+    else:
+        return redirect('unauthorized')
 
 
 def login_user(request):
@@ -49,6 +64,10 @@ def login_user(request):
             return redirect('login')
     
     return render(request, "connexion.html")
+
+def deconexion(request):
+    logout(request)
+    return redirect("index")
 
 
 def register(request):
@@ -75,10 +94,16 @@ def register(request):
 def declare_bien(request):
     if request.method == 'POST':
         form = DeclarationForm(request.POST, request.FILES)
+        print('okok3')
         if form.is_valid():
-            form.save(commit=False)
-            form.user = request.user
-            return redirect('index')  # Redirige après la soumission
+            print('okok1')
+            declaration = form.save(commit=False)
+            declaration.user = request.user
+            declaration.save()
+            return redirect('index')  
+        else:
+            print('okoko1')
+            print(form.errors)   
     else:
         form = DeclarationForm()
 

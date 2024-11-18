@@ -62,7 +62,7 @@ class BienImobilier(models.Model):
     valeur = models.DecimalField(max_digits=10, decimal_places=2)
     proprietaire = models.CharField(max_length=100)
     date_acquisition = models.DateField()
-    date_chambre = models.IntegerField()
+    nommbre_chambre = models.IntegerField()
     nbr_hectare = models.FloatField()
     commune = models.CharField(
         max_length=100,
@@ -70,8 +70,8 @@ class BienImobilier(models.Model):
         default='abobo',
     )
     photo1 = models.ImageField(upload_to='photo/')
+    photo2 = models.ImageField(upload_to='photo/')
     photo3 = models.ImageField(upload_to='photo/')
-    photo4 = models.ImageField(upload_to='photo/')
 
 
     def __str__(self):

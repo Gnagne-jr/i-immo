@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire Multi-Étapes</title>
+    <title>Formulaire Multi-Étapes - Déclaration de Bien Immobilier</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -69,11 +69,29 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+
+        .progress-bar {
+            height: 5px;
+            background: #f1f1f1;
+            margin-bottom: 20px;
+        }
+
+        .progress {
+            height: 100%;
+            width: 50%; /* Initial Progress */
+            background: #007bff;
+        }
     </style>
 </head>
 <body>
     <div class="form-container">
         <h1>Déclaration de Bien Immobilier</h1>
+
+        <!-- Progress bar -->
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+
         <form id="multiStepForm" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             
@@ -101,23 +119,23 @@
             
             <!-- Étape 2 -->
             <div class="form-step" id="step2">
-                <label for="date_chambre">Date de chambre :</label>
-                {{ form.date_chambre }}
+                <label for="nommbre_chambre">Nombre de chambres :</label>
+                {{ form.nommbre_chambre }}
 
                 <label for="nbr_hectare">Nombre d'hectares :</label>
                 {{ form.nbr_hectare }}
 
-                <label for="commune">Nombre d'hectares :</label>
+                <label for="commune">Commune :</label>
                 {{ form.commune }}
 
                 <label for="photo1">Photo 1 :</label>
                 {{ form.photo1 }}
 
+                <label for="photo2">Photo 2 :</label>
+                {{ form.photo2 }}
+
                 <label for="photo3">Photo 3 :</label>
                 {{ form.photo3 }}
-
-                <label for="photo4">Photo 4 :</label>
-                {{ form.photo4 }}
 
                 <div class="button-group">
                     <button type="button" id="prevBtn2">Précédent</button>
@@ -133,15 +151,24 @@
             const step2 = document.getElementById("step2");
             const nextBtn1 = document.getElementById("nextBtn1");
             const prevBtn2 = document.getElementById("prevBtn2");
+            const progress = document.getElementById("progress");
 
             nextBtn1.addEventListener("click", () => {
+                // Validation de l'étape 1
+                const valeur = document.querySelector('[name="valeur"]').value;
+                if (valeur <= 0) {
+                    alert("La valeur du bien doit être supérieure à zéro.");
+                    return; // Ne pas passer à l'étape suivante si la validation échoue
+                }
                 step1.classList.remove("active");
                 step2.classList.add("active");
+                progress.style.width = "100%"; // Mettre à jour la barre de progression
             });
 
             prevBtn2.addEventListener("click", () => {
                 step2.classList.remove("active");
                 step1.classList.add("active");
+                progress.style.width = "50%"; // Réinitialiser la barre de progression
             });
         });
     </script>
