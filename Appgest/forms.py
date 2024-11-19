@@ -41,3 +41,12 @@ class DeclarationForm(ModelForm):
             if photo and len(photo.name) > 100:
                 raise ValidationError("Le nom du fichier photo3 dépasse 100 caractères.")
             return photo
+        
+class BienUpdateForm(forms.ModelForm):
+    class Meta:
+        model = BienImobilier
+        fields = ['valeur_reel', 'taux_imposition']
+        widgets = {
+            'valeur_reel': forms.NumberInput(attrs={'class': 'form-control'}),
+            'taux_imposition': forms.NumberInput(attrs={'class': 'form-control'}),
+        }

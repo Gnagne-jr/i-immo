@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth import get_user_model
@@ -6,6 +7,7 @@ from .forms import *
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
 from .models import *
+from django.views.decorators.csrf import csrf_exempt
 
 User = get_user_model()
 
@@ -110,4 +112,19 @@ def declare_bien(request):
     return render(request, 'declare_bien.html', {'form': form})
 
 
+
+def mettre_a_jour_bien(request, bien_id):
+    bien = get_object_or_404(BienImobilier, id=bien_id)
+    if request.method == 'POST':
+        form = BienUpdateForm(request.POST, instance=bien)
+        if form.is_valid():
+            MAJ = form.save(commit=False)
+            MAJ.valeur_due = MAJ.calcul_valeur_due()
+            MAJ.save()
+
+            return redirect('dashboard')
+    else:
+        form = BienUpdateForm(instance=bien)
+
+    return render(request, 'modal_update_form.html', {'form': form, 'bien': bien})
     

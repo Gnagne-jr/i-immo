@@ -40,7 +40,7 @@
         }
 
         button {
-            background-color: #007bff;
+            background-color: #ec9007;
             color: white;
             border: none;
             padding: 10px 15px;
@@ -50,7 +50,7 @@
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #034f04;
         }
 
         .button-group {
@@ -79,7 +79,7 @@
         .progress {
             height: 100%;
             width: 50%; /* Initial Progress */
-            background: #007bff;
+            background: #ffa600;
         }
     </style>
 </head>
@@ -103,7 +103,7 @@
                 <label for="adresse">Adresse :</label>
                 {{ form.adresse }}
 
-                <label for="valeur">Valeur :</label>
+                <label for="valeur">Valeur estimé du bien:</label>
                 {{ form.valeur }}
 
                 <label for="proprietaire">Propriétaire :</label>
@@ -122,7 +122,7 @@
                 <label for="nommbre_chambre">Nombre de chambres :</label>
                 {{ form.nommbre_chambre }}
 
-                <label for="nbr_hectare">Nombre d'hectares :</label>
+                <label for="nbr_hectare">Nombre mètre carré :</label>
                 {{ form.nbr_hectare }}
 
                 <label for="commune">Commune :</label>
@@ -158,17 +158,17 @@
                 const valeur = document.querySelector('[name="valeur"]').value;
                 if (valeur <= 0) {
                     alert("La valeur du bien doit être supérieure à zéro.");
-                    return; // Ne pas passer à l'étape suivante si la validation échoue
+                    return; 
                 }
                 step1.classList.remove("active");
                 step2.classList.add("active");
-                progress.style.width = "100%"; // Mettre à jour la barre de progression
+                progress.style.width = "100%";
             });
 
             prevBtn2.addEventListener("click", () => {
                 step2.classList.remove("active");
                 step1.classList.add("active");
-                progress.style.width = "50%"; // Réinitialiser la barre de progression
+                progress.style.width = "50%"; 
             });
         });
     </script>

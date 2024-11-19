@@ -64,6 +64,9 @@ class BienImobilier(models.Model):
     date_acquisition = models.DateField()
     nommbre_chambre = models.IntegerField()
     nbr_hectare = models.FloatField()
+    taux_imposition = models.FloatField(default=0.0)
+    valeur_reel = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
+    valeur_due = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
     commune = models.CharField(
         max_length=100,
         choices=COMMUNE_CHOICES,
@@ -73,6 +76,13 @@ class BienImobilier(models.Model):
     photo2 = models.ImageField(upload_to='photo/')
     photo3 = models.ImageField(upload_to='photo/')
 
+    def calcul_valeur_due(self):
+        """
+        Calcule la valeur que le contribuable doit payer.
+        """
+        if self.taux_imposition and self.valeur_reel:
+            return (float(self.valeur_reel) *  self.taux_imposition) / 100
+        return None
 
     def __str__(self):
         return f"{self.type_bien} - {self.adresse}"

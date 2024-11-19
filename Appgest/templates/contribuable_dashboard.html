@@ -30,8 +30,10 @@
                     <th>Type de bien</th>
                     <th>Adresse</th>
                     <th>Valeur</th>
+                    <th>Montant a payer</th>
                     <th>Date d'acquisition</th>
                     <th>Commune</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,8 +42,12 @@
                     <td>{{ declaration.type_bien }}</td>
                     <td>{{ declaration.adresse }}</td>
                     <td>{{ declaration.valeur }}</td>
+                    <td>{{ declaration.valeur_due }}</td>
                     <td>{{ declaration.date_acquisition }}</td>
                     <td>{{ declaration.commune }}</td>
+                    {% if declaration.valeur_due > 0 %}
+                        <a href="#" class="btn btn-success">Payer</a>
+                    {% endif %}
                 </tr>
                 {% empty %}
                 <tr>
