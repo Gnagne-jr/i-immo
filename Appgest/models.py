@@ -25,8 +25,13 @@ class CustomUser(AbstractUser):
     is_agent = models.BooleanField(default=False)
     is_contribuable = models.BooleanField(default=False)
     commune = models.CharField(choices=COMMUNE_CHOICES, max_length=100)
-    # numero = models.IntegerField(null=True, blank=True)
+    numero = models.CharField(null=True, blank=True, default='0151606704', max_length=25)
 
+    def save(self, *args, **kwargs):
+        # Si l'utilisateur est nouveau ou si le mot de passe a été modifié
+        if not self.pk or not self.password.startswith('pbkdf2_'):  
+            self.set_password(self.password)
+        super().save(*args, **kwargs)
     def __str__(self):
         return f"{self.first_name}"
 
@@ -62,7 +67,7 @@ class BienImobilier(models.Model):
     valeur = models.DecimalField(max_digits=10, decimal_places=2)
     proprietaire = models.CharField(max_length=100)
     date_acquisition = models.DateField()
-    nommbre_chambre = models.IntegerField()
+    nommbre_chambre = models.IntegerField(blank=True, null=True)
     nbr_hectare = models.FloatField()
     taux_imposition = models.FloatField(default=0.0)
     valeur_reel = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)

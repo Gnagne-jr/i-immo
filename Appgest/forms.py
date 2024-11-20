@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 class UserForm(ModelForm):
     class Meta:
         model = CustomUser
-        fields = ['first_name', 'last_name', 'username', 'email', 'commune', 'password']
+        fields = ['first_name', 'last_name', 'username', 'email', 'commune', 'password', 'numero']
 
 
 class DeclarationForm(ModelForm):

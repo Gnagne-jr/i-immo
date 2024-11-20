@@ -127,7 +127,7 @@
                     <li><a href="{% url "register" %}">S'inscrire</a></li>
                     {% endif %}
                     <li><a href="{% url "gest_bien" %}">Gerer ses biens immobiliers</a></li>
-                    <li><a href="Paiementimpôt.html">Payer ses impôts</a></li>
+                    <li><a href="{% url "payer_impot" %}">Payer ses impôts</a></li>
                 {% endif %}
                 
                 {% if user.is_agent %}

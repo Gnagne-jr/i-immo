@@ -20,6 +20,9 @@ def gest_bien(request):
 def contact(request):
     return render(request, 'contact.html')
 
+def payer_impot(request):
+    return render(request, 'Paiementimpot.html')
+
 @login_required
 def dashboard(request):
    
@@ -80,6 +83,7 @@ def register(request):
             user = form.save(commit=False)
 
             user.password = make_password(form.cleaned_data['password'])
+            user.is_contribuable = True
         
             user.save()
 

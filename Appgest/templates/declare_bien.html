@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load form_extras %}
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -98,7 +99,7 @@
             <!-- Étape 1 -->
             <div class="form-step active" id="step1">
                 <label for="type_bien">Type de bien :</label>
-                {{ form.type_bien }}
+                {{ form.type_bien|add_class:"type-bien" }}
 
                 <label for="adresse">Adresse :</label>
                 {{ form.adresse }}
@@ -119,8 +120,8 @@
             
             <!-- Étape 2 -->
             <div class="form-step" id="step2">
-                <label for="nommbre_chambre">Nombre de chambres :</label>
-                {{ form.nommbre_chambre }}
+                <label for="nommbre_chambre" id="chambre_label">Nombre de chambres :</label>
+                {{ form.nommbre_chambre|add_class:"nombre-chambre" }}   
 
                 <label for="nbr_hectare">Nombre mètre carré :</label>
                 {{ form.nbr_hectare }}
@@ -171,6 +172,29 @@
                 progress.style.width = "50%"; 
             });
         });
+
+        document.addEventListener("DOMContentLoaded", () => {
+        const typeBienField = document.querySelector('[name="type_bien"]');
+        const chambreField = document.querySelector('[name="nommbre_chambre"]');
+        const chambreLabel = document.getElementById("chambre_label");
+
+        // Fonction pour afficher/masquer le champ en fonction du type de bien
+        const toggleChambreField = () => {
+            if (typeBienField.value === "terrain") {
+                chambreField.style.display = "none";
+                chambreLabel.style.display = "none";
+            } else {
+                chambreField.style.display = "block";
+                chambreLabel.style.display = "block";
+            }
+        };
+
+        // Événement de changement sur le champ Type de bien
+        typeBienField.addEventListener("change", toggleChambreField);
+
+        // Appel initial pour définir l'état correct lors du chargement de la page
+        toggleChambreField();
+    });
     </script>
 </body>
 </html>

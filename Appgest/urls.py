@@ -14,5 +14,6 @@ urlpatterns = [
     path('tableau-de-bord-agent/', dashboard, name='dashboard'),
     path('dashboard/contribuable/', contribuable_dashboard, name='contribuable_dashboard'),
     path('mettre_a_jour_bien/<int:bien_id>/', mettre_a_jour_bien, name='mettre_a_jour_bien'),
+    path('payer_impot/', payer_impot, name='payer_impot')
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
